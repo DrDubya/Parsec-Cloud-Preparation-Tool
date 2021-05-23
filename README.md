@@ -45,7 +45,7 @@ Do not select "Turn on Display Device" when setting up the instance, this will c
 ### START HERE! Copy this code into Powershell (you may need to press enter at the end):
 ```
 [Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls" 
-$ScriptWebArchive = "https://github.com/parsec-cloud/Parsec-Cloud-Preparation-Tool/archive/master.zip"  
+$ScriptWebArchive = "https://github.com/DrDubya/Parsec-Cloud-Preparation-Tool/archive/master.zip"  
 $LocalArchivePath = "$ENV:UserProfile\Downloads\Parsec-Cloud-Preparation-Tool"  
 (New-Object System.Net.WebClient).DownloadFile($ScriptWebArchive, "$LocalArchivePath.zip")  
 Expand-Archive "$LocalArchivePath.zip" -DestinationPath $LocalArchivePath -Force  
