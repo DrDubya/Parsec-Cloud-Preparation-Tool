@@ -3,7 +3,7 @@ param (
     )
     
 
-$host.ui.RawUI.WindowTitle = "Parsec Cloud Preparation Tool"
+$host.ui.RawUI.WindowTitle = "Dark Cloud Preparation Tool"
 
 [Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls" 
 
@@ -363,8 +363,8 @@ $CloudProvider = CloudProvider
         "Detected $CloudProvider"
         Write-Host @"
 Do you want this computer to log on to Windows automatically? 
-(Y): This is good when you want the cloud computer to boot straight to Parsec but is less secure as the computer will not be protected by a password at start up
-(N): If you plan to log into Windows with RDP then connect via Parsec, or have been told you don't need to set this up
+(Y): This is good when you want the cloud computer to boot straight to Dark Cloud but is less secure as the computer will not be protected by a password at start up
+(N): If you plan to log into Windows with RDP then connect via Dark Cloud, or have been told you don't need to set this up
 "@ -ForegroundColor Black -BackgroundColor Red
         $ReadHost = Read-Host "(Y/N)" 
         Switch ($ReadHost) 
@@ -465,7 +465,7 @@ function download-resources {
     ProgressWriter -Status "Downloading Parsec Virtual Display Driver" -percentcomplete $PercentComplete
     (New-Object System.Net.WebClient).DownloadFile("https://builds.parsec.app/vdd/parsec-vdd-0.37.0.0.exe", "C:\ParsecTemp\Apps\parsec-vdd.exe")
     ProgressWriter -Status "Downloading GPU Updater" -PercentComplete $PercentComplete
-    (New-Object System.Net.WebClient).DownloadFile("https://s3.amazonaws.com/parseccloud/image/parsec+desktop.png", "C:\ParsecTemp\parsec+desktop.png")
+    (New-Object System.Net.WebClient).DownloadFile("https://wallpapercave.com/wp/bmdgj2I.jpg", "C:\ParsecTemp\desktop.jpg")
     (New-Object System.Net.WebClient).DownloadFile("https://s3.amazonaws.com/parseccloud/image/white_ico_agc_icon.ico", "C:\ParsecTemp\white_ico_agc_icon.ico")
     (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/parsec-cloud/Cloud-GPU-Updater/master/GPUUpdaterTool.ps1", "$env:ProgramData\ParsecLoader\GPUUpdaterTool.ps1")
     ProgressWriter -Status "Downloading Google Chrome" -PercentComplete $PercentComplete
@@ -625,9 +625,9 @@ function disable-lock {
 
 #set wallpaper
 function set-wallpaper {
-    ProgressWriter -Status "Setting the Parsec logo ass the computer wallpaper" -PercentComplete $PercentComplete
+    ProgressWriter -Status "Setting the Dark Cloud logo ass the computer wallpaper" -PercentComplete $PercentComplete
     if((Test-Path -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System) -eq $true) {} Else {New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies" -Name "System" | Out-Null}
-    if((Test-RegistryValue -path HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System -value Wallpaper) -eq $true) {Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name Wallpaper -value "C:\ParsecTemp\parsec+desktop.png" | Out-Null} Else {New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name Wallpaper -PropertyType String -value "C:\ParsecTemp\parsec+desktop.png" | Out-Null}
+    if((Test-RegistryValue -path HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System -value Wallpaper) -eq $true) {Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name Wallpaper -value "C:\ParsecTemp\desktop.jpg" | Out-Null} Else {New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name Wallpaper -PropertyType String -value "C:\ParsecTemp\desktop.jpg" | Out-Null}
     if((Test-RegistryValue -path HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System -value WallpaperStyle) -eq $true) {Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name WallpaperStyle -value 2 | Out-Null} Else {New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name WallpaperStyle -PropertyType String -value 2 | Out-Null}
     Stop-Process -ProcessName explorer
     }

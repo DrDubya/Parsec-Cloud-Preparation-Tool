@@ -4,23 +4,23 @@
 Add-Type -AssemblyName System.Windows.Forms
 $Screen = [System.Windows.Forms.Screen]::PrimaryScreen
 	$form1_Load = {
-		$script:countdown = [timespan]'00:55:00' 
-		$Text.Text = "YOUR CLOUD COMPUTER HAS BEEN ON FOR " ,$countdown.Minutes, " MINUTES " ,$countdown.Seconds, " SECONDS."
+		$script:countdown = [timespan]'00:35:00' 
+		$Text.Text = "YOUR DARK CLOUD MACHINE HAS BEEN ON FOR " ,$countdown.Minutes, " MINUTES " ,$countdown.Seconds, " SECONDS."
 		$timer1.Start()
 	}
 
 
 	$timer1_Tick = {
-        if ($script:countdown -ge [timespan]'00:59:59') {
+        if ($script:countdown -ge [timespan]'00:29:59') {
         $timer1.Stop()
         $Form.Close()
         }
         Else{}
 		$script:countdown += [timespan]'00:00:01'
-		$Text.Text = "YOUR CLOUD COMPUTER HAS BEEN ON FOR " ,$countdown.Minutes, " MINUTES " ,$countdown.Seconds, " SECONDS."
+		$Text.Text = "YOUR DARK CLOUD MACHINE HAS BEEN ON FOR " ,$countdown.Minutes, " MINUTES " ,$countdown.Seconds, " SECONDS."
 	}
 
-$SubMessage = "Stop your computer now if you don't want to pay another hour of game time."
+$SubMessage = "Stop your machine now if you don't want to pay another token for game time."
 $timer1 = New-Object System.Windows.Forms.Timer
 $Form = New-Object system.Windows.Forms.Form
 $Form.BackColor = "#25253f"
